@@ -16,6 +16,7 @@
     "antd": "^4.3.0",
     "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.13.2",
+    "cross-env": "^7.0.3",
     "faker": "^4.1.0",
     "immer": "^7.0.1",
     "moment": "^2.29.1",
