@@ -11,6 +11,8 @@ const userRouter = require('./routes/user')
 const hashtagRouter = require('./routes/hashtag')
 const db = require('./models')
 const path = require('path')
+const hpp = require('hpp');
+const helmet = require('helmet');
 
 const passportConfig = require('./passport');
 
@@ -26,9 +28,17 @@ db.sequelize.sync() //db설정
 
 passportConfig(); //passport설정
 
-app.use(morgan('dev'))
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(morgan('combined'));
+    app.use(hpp());
+    app.use(helmet());
+} else {
+    app.use(morgan('dev'))
+}
+
 app.use(cors({ //front에서 오는 쿠키를 백앤드에서 처리할 수 있게 만들어줌
-    origin: 'http://localhost:3060',
+    origin: ['http://localhost:3060', 'nodebird.com'],
     credentials: true
 }))
 app.use('/',express.static(path.join(__dirname, 'uploads'))) //운영체제에 맞게
