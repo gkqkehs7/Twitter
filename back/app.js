@@ -38,7 +38,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 app.use(morgan('dev'))
 app.use(cors({ //front에서 오는 쿠키를 백앤드에서 처리할 수 있게 만들어줌
-    origin: ['http://localhost:3060', 'nodebird.com'],
+    origin: ['http://localhost:3060', 'nodebird.com', 'http://15.165.17.13'],
     credentials: true
 }))
 app.use('/',express.static(path.join(__dirname, 'uploads'))) //운영체제에 맞게
